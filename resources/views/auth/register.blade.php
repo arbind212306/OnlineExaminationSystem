@@ -95,9 +95,9 @@
         <div class="input-group mb-3">
             <select name="gender" id="gender" class="form-control custom-select @error('gender') is-invalid @enderror" required >
                 <option value="">---Select Gender--</option>
-                @isset($cities)
-                    @foreach ($cities as $gender)
-                    <option value="{{ $gender->id }}" {{ old("gender") == $gender->id ? 'selected' : '' }}>{{$gender->name}}</option>
+                @if($genders = gender())
+                    @foreach ($genders as $gender)
+                    <option value="{{ $gender }}" {{ old("gender") == $gender ? 'selected' : '' }}>{{ $gender }}</option>
                     @endforeach
                 @endif
             </select>
