@@ -17,7 +17,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware' => ['auth' => 'admin'], 'prefix' => '/admin'], function() {
+    Route::get('/dashboard', 'Admin\DashboardController@dashboard')->name('dashboard');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/dashboard', 'Backend\ResturantController@dashboard')->name('dashboard');
+
+Route::get('/admin/login', 'Auth\LoginController@showLoginForm');
+Route::post('/admin/login', 'Auth\LoginController@adminLogin')->name('admin.login');
