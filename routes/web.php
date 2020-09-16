@@ -55,6 +55,8 @@ Route::group(['middleware' => ['auth' => 'admin'], 'prefix' => '/admin'], functi
     Route::get('/users/enrolled/change-status/{id}', 'Admin\UserController@change_enrolled_user_status')->name('change.status.enrolled.user');
     Route::get('/users/qualified-candidate', 'Admin\UserController@qualified_candidate')->name('user.qualified');
     Route::get('/users/disqualified-candidate', 'Admin\UserController@disqualified_candidate')->name('user.disqualified');
+    Route::get('/users/assesment/appeared', 'Admin\UserController@appeared_assesment')->name('user.appered');
+    Route::get('/users/assesment/not-appeared', 'Admin\UserController@not_appered_assesment')->name('user.not.appered');
     
 });
 
