@@ -97,7 +97,7 @@
                 <option value="">---Select Gender--</option>
                 @if($genders = gender())
                     @foreach ($genders as $gender)
-                    <option value="{{ $gender }}" {{ old("gender") == $gender ? 'selected' : '' }}>{{ $gender }}</option>
+                    <option value="{{ $gender }}" {{ old("gender") == $gender ? 'selected' : '' }}>{{ ucfirst($gender) }}</option>
                     @endforeach
                 @endif
             </select>

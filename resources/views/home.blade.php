@@ -7,13 +7,12 @@
         <div class="container">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark"> Top Navigation <small>Example 3.0</small></h1>
+                    <h1 class="m-0 text-dark"> {{ ucwords('welcome to online assesment test portal') }} <small></small>
+                    </h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item"><a href="#">Layout</a></li>
-                        <li class="breadcrumb-item active">Top Navigation</li>
+                        <!-- <li class="breadcrumb-item"><a href="#">Home</a></li> -->
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
@@ -24,64 +23,82 @@
     <!-- Main content -->
     <div class="content">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-
-                            <p class="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's
-                                content.
-                            </p>
-
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
-                        </div>
-                    </div>
-
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-12">
                     <div class="card card-primary card-outline">
+                    @include('alert')
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
+                            <!-- general form elements -->
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">{{ ucwords('Hey '.Auth::user()->name.',')}}<small>{{ ucwords(' please enroll yourself for the assesment test !!') }}</small></h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <!-- form start -->
+                                    <form action="{{ route('enroll.user') }}" method="POST">
+                                        @csrf
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="name">{{ ucwords('user name') }}</label>
+                                                        <input type="text" name="name"
+                                                            class="form-control @error('name') is-invalid @enderror"
+                                                            id="name" placeholder="{{ __('Enter user name') }}"
+                                                            value="{{ Auth::user()->name }}"
+                                                            autocomplete="name" autofocus>
 
-                            <p class="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's
-                                content.
-                            </p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
+                                                        @error('name')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6">
+                                                    <div class="form-group">
+                                                        <label for="exam">{{ ucfirst('Exam Name') }}</label>
+                                                        <select name="exam_id" id="exam_id"
+                                                            class="form-control  @error('exam_id') is-invalid @enderror"
+                                                            autofocus>
+                                                            <option value="">--Select Exam--</option>
+                                                            @isset($exams)
+                                                            @foreach($exams as $exam)
+                                                            <option value="{{ intval($exam->id) }}"
+                                                                {{ old('exam_id') == $exam->id ? 'selected' : '' }}>
+                                                                {{ $exam->title }}</option>
+                                                            @endforeach
+                                                            @endif
+                                                        </select>
+
+                                                        @error('question_date')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.card-body -->
+
+                                            <div class="card-footer">
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                            </div>
+                                    </form>
+                            </div>
+                            <!-- /.card -->
+                        </div>
+                        <div>
+                            @if($user_registered_exam)
+                            <h3>{{ ucfirst('You have following assesment to attend') }}</h3>
+                            @foreach($user_registered_exam as $user_exam)
+                            <a href="{{ route('user.assesment', ['id' => $user_exam->id]) }}">{{ $user_exam->title }}</a> <br>
+                            @endforeach
+                            @endif
                         </div>
                     </div><!-- /.card -->
                 </div>
-                <!-- /.col-md-6 -->
-                <div class="col-lg-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="card-title m-0">Featured</h5>
-                        </div>
-                        <div class="card-body">
-                            <h6 class="card-title">Special title treatment</h6>
-
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                            </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-
-                    <div class="card card-primary card-outline">
-                        <div class="card-header">
-                            <h5 class="card-title m-0">Featured</h5>
-                        </div>
-                        <div class="card-body">
-                            <h6 class="card-title">Special title treatment</h6>
-
-                            <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                            </p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.col-md-6 -->
             </div>
             <!-- /.row -->
         </div><!-- /.container-fluid -->
