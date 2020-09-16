@@ -142,15 +142,27 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a href="{{ route('user.appered') }}" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>Users appered assesment</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('user.not.appered') }}" class="nav-link">
+                                <i class="nav-icon fas fa-table"></i>
+                                <p>Users not appered assesment</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a href="{{ route('user.qualified') }}" class="nav-link">
                                 <i class="nav-icon fas fa-table"></i>
-                                <p>Qalified Candidate</p>
+                                <p>Qalified candidate</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('user.disqualified') }}" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
-                                <p>Disqalified Candidate</p>
+                                <p>Disqalified candidate</p>
                             </a>
                         </li>
                     </ul>

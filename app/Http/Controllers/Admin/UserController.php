@@ -75,4 +75,14 @@ class UserController extends Controller
     {
         return view('admin.user.disqualified_candidate');
     }
+
+    public function appeared_assesment()
+    {
+        return view('admin.user.present_user');
+    }
+
+    public function not_appered_assesment()
+    {
+        return view('admin.user.absent_user');
+    }
 }
