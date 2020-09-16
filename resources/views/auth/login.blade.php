@@ -90,7 +90,7 @@
                     </p>
                     <p class="mb-0">
                         @if (Route::has('register'))
-                        <a href="{{ route('register') }}">{{ __('Register as customer') }} </a>
+                        <a href="{{ route('register') }}">{{ __('New user register') }} </a>
                         @endif
                     </p>
             </div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $exams = Exam::get();
+        $user_registered_exam = Auth::user()->exams()->orderBy('title')->get();
+        
+        return view('home')->with(['exams' => $exams])->with(['user_registered_exam' => $user_registered_exam]);
     }
 }

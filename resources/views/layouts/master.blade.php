@@ -17,6 +17,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ url('assets/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ url('assets/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ url('css/custom.css') }}">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 
 <body class="hold-transition layout-top-nav">

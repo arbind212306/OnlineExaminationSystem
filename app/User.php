@@ -42,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * users that belongs to exam
+     */
+    public function exams()
+    {
+        return $this->belongsToMany('App\Exam', 'user_exam_enroll', 'user_id', 'exam_id')
+                    ->withPivot('attendance_status', 'status')
+                    ->withTimestamps();
+    }
 }

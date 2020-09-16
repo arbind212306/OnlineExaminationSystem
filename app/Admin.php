@@ -39,4 +39,11 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
     
+    /**
+     * Get the exams created by admin
+     */
+    public function exams()
+    {
+        return $this->hasMany('App\Admin');
+    }
 }
